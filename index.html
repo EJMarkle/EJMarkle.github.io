@@ -4,6 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script>
+      AFRAME.registerComponent('intersectable', {
+      init: function() {
+        this.el.addEventListener('click', function() {
+          console.log("Tank clicked!");
+          window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+        });
+      }
+    });
+    </script>
   </head>
   <body>
     <a-scene mindar-image="imageTargetSrc: src/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
@@ -12,11 +22,20 @@
         <a-asset-item id="avatarModel" src="src/Tank.glb"></a-asset-item>
       </a-assets>
 
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <a-entity mindar-image-target="targetIndex: 0">
+      <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable"></a-entity>
+
+      <a-camera position="0 0 0" look-controls="enabled: false">
+        <a-entity raycaster="far: 30; objects: .intersectable"
+        cursor
+        geometry="primitive: ring; radiusOuter: 0.015;
+                        radiusInner: 0.01; segmentsTheta: 32"
+        material="color: #283644; shader: flat"
+        position="0 0 -0.75"></a-entity>
+      </a-camera>
+      <a-entity id="objects" mindar-image-target="targetIndex: 0">
         <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
         
-        <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.05 0.05 0.05" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+        <a-gltf-model class="intersectable" rotation="90 0 0 " position="0 0 0" scale="0.05 0.05 0.05" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
         
         </a-entity>
     </a-scene>
