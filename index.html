@@ -22,10 +22,10 @@
         <a-asset-item id="avatarModel" src="src/Tank.glb"></a-asset-item>
       </a-assets>
 
-      <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="far: 100; objects: .intersectable"></a-entity>
+      <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="far: 1; objects: .intersectable"></a-entity>
 
       <a-camera position="0 0 0" look-controls="enabled: false">
-        <a-entity raycaster="far: 100; objects: .intersectable"
+        <a-entity raycaster="far: 1; objects: .intersectable"
         cursor
         geometry="primitive: ring; radiusOuter: 0.015;
                         radiusInner: 0.01; segmentsTheta: 32"
