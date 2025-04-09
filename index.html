@@ -24,13 +24,19 @@
 
       <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable"></a-entity>
 
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      
+      <a-camera position="0 0 0" look-controls="enabled: false">
+        <a-entity raycaster="far: 30; objects: .intersectable"
+        cursor
+        geometry="primitive: ring; radiusOuter: 0.015;
+                        radiusInner: 0.01; segmentsTheta: 32"
+        material="color: #283644; shader: flat"
+        position="0 0 -0.75"></a-entity>
+      </a-camera>
       <a-entity id="objects" mindar-image-target="targetIndex: 0">
         <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
         
-        <a-gltf-model class="intersectable" rotation="90 0 0 " position="0 0 0" scale="0.05 0.05 0.05" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
-        
+        <!-- <a-gltf-model class="intersectable" rotation="90 0 0 " position="0 0 0" scale="0.05 0.05 0.05" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"> -->
+        <a-entity id="avatarModel" class="intersectable" intersectable gltf-model="#avatarModel" position="0 0 0" scale="0.05 0.05 0.05" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
         </a-entity>
     </a-scene>
   </body>
