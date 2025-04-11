@@ -6,13 +6,23 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <script>
       AFRAME.registerComponent('intersectable', {
-      init: function() {
-        this.el.addEventListener('click', function() {
-          console.log("Tank clicked!");
-          window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
-        });
-      }
-    });
+        schema: {
+          url: {type: 'string'}
+        },
+        init: function() {
+          const url = this.data.url;
+          this.el.addEventListener('click', function () {
+            if (url) {
+              console.log(`Opening: ${url}`);
+              window.open(url, '_blank');
+            } else {
+              console.warn("No URL provided for intersectable component.");
+            }
+          });
+        }
+      });
+    </script>
+    
     </script>
   </head>
   <body>
@@ -40,10 +50,10 @@
         <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
         
         <!-- animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" -->
-        <a-entity id="gitButton" class="intersectable" intersectable gltf-model="#gitButton" position="0 1 0" rotation="90 0 0" scale="0.5 0.5 0.5" ></a-entity>
-        <a-entity id="linkedButton" class="intersectable" intersectable gltf-model="#linkedButton" position="0 -1 0" rotation="90 0 0" scale="0.5 0.5 0.5" ></a-entity>
+        <a-entity id="gitButton" class="intersectable" intersectable="url: https://github.com/EJMarkle" gltf-model="#gitButton" position="0 1 0" rotation="90 0 0" scale="0.5 0.5 0.5" ></a-entity>
+        <a-entity id="linkedButton" class="intersectable" intersectable="url: https://www.linkedin.com/in/evanmarkledev/" gltf-model="#linkedButton" position="0 -1 0" rotation="90 0 0" scale="0.5 0.5 0.5" ></a-entity>
         <a-entity id="mailButton" class="intersectable" intersectable gltf-model="#mailButton" position="1 0 0" rotation="90 0 0" scale="0.5 0.5 0.5" ></a-entity>
-        <a-entity id="instaButton" class="intersectable" intersectable gltf-model="#instaButton" position="-1 0 0" rotation="90 0 0" scale="0.5 0.5 0.5" ></a-entity>
+        <a-entity id="instaButton" class="intersectable" intersectable="url: https://www.instagram.com/evon350/" gltf-model="#instaButton" position="-1 0 0" rotation="90 0 0" scale="0.5 0.5 0.5" ></a-entity>
         </a-entity>
     </a-scene>
   </body>
