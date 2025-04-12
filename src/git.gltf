@@ -7,8 +7,7 @@
     {
       "name": "Scene",
       "nodes": [
-        0,
-        1
+        0
       ]
     }
   ],
@@ -35,28 +34,6 @@
       ],
       "name": "Git",
       "mesh": 0
-    },
-    {
-      "matrix": [
-        0,
-        1,
-        -2.220446049250313e-16,
-        0,
-        -2.509104035652854e-17,
-        2.509104035652854e-17,
-        0.113,
-        0,
-        1,
-        0,
-        2.220446049250313e-16,
-        0,
-        0,
-        0,
-        0.06877138592898491,
-        1
-      ],
-      "name": "Git",
-      "mesh": 1
     }
   ],
   "bufferViews": [
@@ -170,23 +147,6 @@
           "texCoord": 0
         }
       },
-      "alphaMode": "BLEND",
-      "extensions": {
-        "KHR_materials_unlit": {}
-      }
-    },
-    {
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          0.775822218312646,
-          0.10946171076915331,
-          0.85499260812105,
-          1
-        ],
-        "metallicFactor": 0,
-        "roughnessFactor": 0.9
-      },
-      "alphaMode": "BLEND",
       "extensions": {
         "KHR_materials_unlit": {}
       }
@@ -224,20 +184,6 @@
           },
           "indices": 3,
           "material": 0
-        }
-      ]
-    },
-    {
-      "primitives": [
-        {
-          "mode": 4,
-          "attributes": {
-            "POSITION": 0,
-            "NORMAL": 1,
-            "TEXCOORD_0": 2
-          },
-          "indices": 3,
-          "material": 1
         }
       ]
     }
