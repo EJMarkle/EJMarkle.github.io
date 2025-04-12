@@ -52,7 +52,7 @@
         0,
         0,
         0,
-        -0.005204309988154687,
+        -0.010067237117508565,
         1
       ],
       "name": "Git",
@@ -170,6 +170,7 @@
           "texCoord": 0
         }
       },
+      "alphaMode": "BLEND",
       "extensions": {
         "KHR_materials_unlit": {}
       }
