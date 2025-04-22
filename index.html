@@ -23,32 +23,30 @@
         }
       });
     </script>
-    
-    </script>
   </head>
   <body>
     <a-scene mindar-image="imageTargetSrc: src/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
         <img id="card" src="src/Lumi.jpg" />
-        <a-asset-item id="avatarModel" src="src/Tank.glb"></a-asset-item>
-        <a-asset-item id="gitButton" src="src/git.gltf"></a-asset-item>
-        <a-asset-item id="mailButton" src="src/mail.gltf"></a-asset-item>
-        <a-asset-item id="instaButton" src="src/insta.gltf"></a-asset-item>
-        <a-asset-item id="linkedButton" src="src/linked.gltf"></a-asset-item>
+        <a-asset-item id="asset-avatarModel" src="src/Tank.glb"></a-asset-item>
+        <a-asset-item id="asset-gitButton" src="src/git.gltf"></a-asset-item>
+        <a-asset-item id="asset-mailButton" src="src/mail.gltf"></a-asset-item>
+        <a-asset-item id="asset-instaButton" src="src/insta.gltf"></a-asset-item>
+        <a-asset-item id="asset-linkedButton" src="src/linked.gltf"></a-asset-item>
       </a-assets>
 
-      <!-- <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; showLine: true; far;"></a-entity>
-      -->
+      <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; far: 1000;"></a-entity>
+      
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <a-entity id="objects" mindar-image-target="targetIndex: 0">
         <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
         
         <!-- animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" -->
-        <a-entity id="gitButton" class="intersectable" intersectable="url: https://github.com/EJMarkle" gltf-model="#gitButton" position="0 1.5 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
-        <a-entity id="linkedButton" class="intersectable" intersectable="url: https://www.linkedin.com/in/evanmarkledev/" gltf-model="#linkedButton" position="0 -1.5 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
-        <a-entity id="mailButton" class="intersectable" intersectable gltf-model="#mailButton" position="1.5 0 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
-        <a-entity id="instaButton" class="intersectable" intersectable="url: https://www.instagram.com/evon350/" gltf-model="#instaButton" position="-1.5 0 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
+        <a-entity id="gitButton" class="intersectable" intersectable="url: https://github.com/EJMarkle" gltf-model="#asset-gitButton" position="0 1.5 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
+        <a-entity id="linkedButton" class="intersectable" intersectable="url: https://www.linkedin.com/in/evanmarkledev/" gltf-model="#asset-linkedButton" position="0 -1.5 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
+        <a-entity id="mailButton" class="intersectable" intersectable="url: mailto:emarkle99@gmail.com" gltf-model="#asset-mailButton" position="1.5 0 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
+        <a-entity id="instaButton" class="intersectable" intersectable="url: https://www.instagram.com/evon350/" gltf-model="#asset-instaButton" position="-1.5 0 0" rotation="0 0 0" scale="1 1 1" ></a-entity>
         </a-entity>
     </a-scene>
   </body>
