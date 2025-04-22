@@ -7,7 +7,7 @@
     {
       "name": "Scene",
       "nodes": [
-        0
+        1
       ]
     }
   ],
@@ -33,7 +33,34 @@
         1
       ],
       "name": "Git",
+      "extras": {
+        "name": "Git"
+      },
       "mesh": 0
+    },
+    {
+      "matrix": [
+        0.5,
+        0,
+        0,
+        0,
+        0,
+        0.5,
+        0,
+        0,
+        0,
+        0,
+        0.5,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "insta.gltf",
+      "children": [
+        0
+      ]
     }
   ],
   "bufferViews": [

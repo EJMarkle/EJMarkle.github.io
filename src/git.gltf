@@ -7,7 +7,7 @@
     {
       "name": "Scene",
       "nodes": [
-        1
+        2
       ]
     }
   ],
@@ -39,9 +39,36 @@
       "mesh": 0
     },
     {
-      "name": "insta.gltf",
+      "name": "instagltf",
+      "extras": {
+        "name": "insta.gltf"
+      },
       "children": [
         0
+      ]
+    },
+    {
+      "matrix": [
+        0.5,
+        0,
+        0,
+        0,
+        0,
+        0.5,
+        0,
+        0,
+        0,
+        0,
+        0.5,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "git.gltf",
+      "children": [
+        1
       ]
     }
   ],
