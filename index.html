@@ -66,10 +66,61 @@
       .a-enter-ar-button {
         display: none !important;
       }
+
+      .modal {
+        display: block; 
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.75);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        max-width: 90%;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        font-family: 'Roboto', sans-serif;
+      }
+
+    .modal-content h2 {
+        margin-top: 0;
+      }
+
+    .modal-content button {
+        margin-top: 20px;
+        padding: 12px 20px;
+        background-color: #283644;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
     </style>
   </head>
 
   <body>
+    <!-- Instructions Modal Popup -->
+    <div id="instructionsModal" class="modal">
+      <div class="modal-content">
+        <h2>Welcome to the AR Experience</h2>
+        <p>Point your camera at the QR code on the back of the business card to begin.</p>
+        <p>Make sure you're in a well-lit environment and allow camera permissions.</p>
+        <button id="closeModal">Start</button>
+      </div>
+    </div>
+    
     <a-scene
       touch-raycast
       mindar-image="imageTargetSrc: src/targets.mind;"
@@ -108,5 +159,20 @@
         <a-entity id="instaButton" class="intersectable" intersectable="url: https://www.instagram.com/evon350/" gltf-model="#asset-instaButton" position="-1.5 0 0" rotation="0 0 0" scale="1 1 1" animation="property: rotation; from: 0 0 -10; to: 0 0 10; dur: 2000; easing: linear; loop: true; dir: alternate"></a-entity>
       </a-entity>
     </a-scene>
+
+    <script>
+      document.getElementById("closeModal").addEventListener("click", function() {
+        document.getElementById("instructionsModal").style.display = "none";
+      });
+    
+      document.querySelector("a-scene").addEventListener("loaded", function () {
+        const scene = this;
+        scene.pause();
+        document.getElementById("closeModal").addEventListener("click", function() {
+          scene.play();
+        });
+      });
+    </script>
+    
   </body>
 </html>
