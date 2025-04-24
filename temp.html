@@ -1,0 +1,189 @@
+<html>
+  <head>
+    <title>Evan Markle - XR Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/aframe/dist/aframe-v1.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <!-- Intersectable component to open URLs on click -->
+    <script>
+      AFRAME.registerComponent('intersectable', {
+        schema: {
+          url: {type: 'string'}
+        },
+        init: function () {
+          const url = this.data.url;
+          this.el.addEventListener('click', function () {
+            if (url) {
+              console.log(`Opening: ${url}`);
+              window.open(url, '_blank');
+            } else {
+              console.warn("No URL provided for intersectable component.");
+            }
+          });
+        }
+      });
+    </script>
+
+    <!-- Touch raycasting component for mobile tap support -->
+    <script>
+      AFRAME.registerComponent('touch-raycast', {
+        init: function () {
+          const sceneEl = this.el.sceneEl;
+          const camera = sceneEl.camera;
+          const raycaster = new THREE.Raycaster();
+          const mouse = new THREE.Vector2();
+
+          window.addEventListener('touchstart', function (e) {
+            const touch = e.touches[0];
+            const bounds = sceneEl.canvas.getBoundingClientRect();
+
+            mouse.x = ((touch.clientX - bounds.left) / bounds.width) * 2 - 1;
+            mouse.y = -((touch.clientY - bounds.top) / bounds.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObjects(
+              sceneEl.object3D.children,
+              true
+            );
+
+            if (intersects.length > 0) {
+              const targetEl = intersects[0].object.el;
+              if (targetEl && targetEl.components.intersectable) {
+                targetEl.emit('click');
+              }
+            }
+          }, { passive: true });
+        }
+      });
+    </script>
+
+    <style>
+      .a-enter-vr-button {
+        display: none !important;
+      }
+      .a-enter-ar-button {
+        display: none !important;
+      }
+
+      .modal {
+        display: block; 
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.75);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        max-width: 90%;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .modal-content p {
+        font-family: 'Roboto Mono', monospace;
+      }
+
+      .modal-content h2 {
+        margin-top: 0;
+        font-family: 'Roboto Mono', monospace;
+      }
+
+      .modal-content button {
+        margin-top: 20px;
+        padding: 12px 20px;
+        background-color: #283644;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: 'Roboto Mono', monospace;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Instructions Modal Popup -->
+    <div id="instructionsModal" class="modal">
+      <div class="modal-content">
+        <h2>Welcome to my AR Business Card</h2>
+        <p>Point your camera at the QR code on the back of the business card to begin.</p>
+        <p>Make sure you're in a well-lit environment and allow camera permissions.</p>
+        <p>Currently only works with Android</p>
+        <button id="closeModal">Start</button>
+        <button id="exit">Exit</button>
+      </div>
+    </div>
+    
+    <a-scene
+      touch-raycast
+      mindar-image="imageTargetSrc: src/targets.mind;"
+      color-space="sRGB"
+      renderer="colorManagement: true, physicallyCorrectLights"
+      vr-mode-ui="enabled: false"
+      xr-mode-ui="XRMode: xr"
+      device-orientation-permission-ui="enabled: true"
+    >
+      <a-assets>
+        <img id="card" src="src/Lumi.jpg" />
+        <a-asset-item id="asset-avatarModel" src="src/Tank.glb"></a-asset-item>
+        <a-asset-item id="asset-gitButton" src="src/git.gltf"></a-asset-item>
+        <a-asset-item id="asset-mailButton" src="src/mail.gltf"></a-asset-item>
+        <a-asset-item id="asset-instaButton" src="src/insta.gltf"></a-asset-item>
+        <a-asset-item id="asset-linkedButton" src="src/linked.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false">
+        <a-entity
+          geometry="primitive: ring; radiusOuter: 0.015; radiusInner: 0.01; segmentsTheta: 32"
+          material="color: #283644; shader: flat"
+          position="0 0 -0.75"
+        ></a-entity>
+      </a-camera>
+
+      <a-entity id="objects" mindar-image-target="targetIndex: 0">
+        <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
+
+        <a-entity id="gitButton" class="intersectable" intersectable="url: https://github.com/EJMarkle" gltf-model="#asset-gitButton" position="0 1.5 0" rotation="0 0 0" scale="1 1 1" animation="property: rotation; from: 0 0 -10; to: 0 0 10; dur: 2000; easing: linear; loop: true; dir: alternate">></a-entity>
+
+        <a-entity id="linkedButton" class="intersectable" intersectable="url: https://www.linkedin.com/in/evanmarkledev/" gltf-model="#asset-linkedButton" position="0 -1.5 0" rotation="0 0 0" scale="1 1 1" animation="property: rotation; from: 0 0 -10; to: 0 0 10; dur: 2000; easing: linear; loop: true; dir: alternate"></a-entity>
+
+        <a-entity id="mailButton" class="intersectable" intersectable="url: mailto:emarkle99@gmail.com" gltf-model="#asset-mailButton" position="1.5 0 0" rotation="0 0 0" scale="1 1 1" animation="property: rotation; from: 0 0 -10; to: 0 0 10; dur: 2000; easing: linear; loop: true; dir: alternate"></a-entity>
+
+        <a-entity id="instaButton" class="intersectable" intersectable="url: https://www.instagram.com/evon350/" gltf-model="#asset-instaButton" position="-1.5 0 0" rotation="0 0 0" scale="1 1 1" animation="property: rotation; from: 0 0 -10; to: 0 0 10; dur: 2000; easing: linear; loop: true; dir: alternate"></a-entity>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      document.getElementById("closeModal").addEventListener("click", function() {
+        document.getElementById("instructionsModal").style.display = "none";
+      });
+    
+      document.querySelector("a-scene").addEventListener("loaded", function () {
+        const scene = this;
+        scene.pause();
+        document.getElementById("closeModal").addEventListener("click", function() {
+          scene.play();
+        });
+        document.getElementById("exit").addEventListener("click", function() {
+          window.location.href = "https://ejmarkle.github.io/MyLinks/";
+        });
+      });
+    </script>
+    
+  </body>
+</html>
