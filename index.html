@@ -59,9 +59,20 @@ a:hover {
   <div style="position:relative;width:80vw;max-width:600px;margin:5vw auto;background:#fff;border-radius:16px;padding:2vw;text-align:center;">
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/S6o6z4rUiJk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:8px;"></iframe>
     <br>
-    <button onclick="document.getElementById('ar-video-modal').style.display='none'" style="margin-top:1vw;padding:0.5vw 1vw;border:none;border-radius:8px;background:#c624d4;color:white;font-family:'Roboto Mono',monospace;cursor:pointer;">Close</button>
+      <button onclick="closeARVideoModal()" style="margin-top:1vw;padding:0.5vw 1vw;border:none;border-radius:8px;background:#c624d4;color:white;font-family:'Roboto Mono',monospace;cursor:pointer;">Close</button>
   </div>
 </div>
+  <script>
+  function closeARVideoModal() {
+    var modal = document.getElementById('ar-video-modal');
+    var iframe = modal.querySelector('iframe');
+    if (iframe) {
+      // Reset src to stop video
+      iframe.src = iframe.src;
+    }
+    modal.style.display = 'none';
+  }
+  </script>
 </h2>
 <h2><a href="https://sacredskyroofingok.com/">sacredskyroofingok.com</a></h2>
 <p>A website I designed and developed for a local roofing company.</p>
