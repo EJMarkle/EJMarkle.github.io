@@ -47,6 +47,33 @@ h2 a {
 
 <h1>Evan Markle - XR Dev</h1>
 <h2><a href="https://www.linkedin.com/in/evanmarkledev/">LinkedIn</a><a href="https://github.com/EJMarkle">Github</a><a href="mailto: emarkle99@gmail.com">Email Me</a><a href="https://www.instagram.com/evon350/">Instagram</a></h2>
+<!-- Capstone Project Card -->
+<div id="capstone-card" style="max-width:400px;margin:2vw auto;padding:2vw;background:white;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.15);text-align:center;">
+  <h2 style="color:#c624d4;">CymSTAR Visitor Portal - Capstone Project</h2>
+  <p style="font-size:1vw;">A visitor portal built with React and Tailwind for CymSTAR. I handled front end design and component development.</p>
+  <button onclick="document.getElementById('capstone-screenshots-modal').style.display='flex'" style="margin:0.5vw;padding:0.5vw 1vw;border:none;border-radius:8px;background:#6a1b9a;color:white;font-family:'Roboto Mono',monospace;cursor:pointer;">View Screenshots</button>
+</div>
+
+<!-- Capstone Screenshots Modal -->
+<div id="capstone-screenshots-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;flex-direction:column;">
+  <div style="position:relative;width:90vw;max-width:800px;margin:5vw auto;background:#fff;border-radius:16px;padding:2vw;text-align:center;">
+    <h2 style="color:#c624d4;">CymSTAR Visitor Portal Screenshots</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:1vw;justify-content:center;align-items:center;">
+      <img src="src/homescreen.PNG" alt="Home Screen" style="max-width:45%;height:auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.10);margin:0.5vw;" />
+      <img src="src/checkin.PNG" alt="Check In" style="max-width:45%;height:auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.10);margin:0.5vw;" />
+      <img src="src/checkout.PNG" alt="Check Out" style="max-width:45%;height:auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.10);margin:0.5vw;" />
+      <img src="src/admin.PNG" alt="Admin Panel" style="max-width:45%;height:auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.10);margin:0.5vw;" />
+    </div>
+    <button onclick="closeCapstoneScreenshotsModal()" style="margin-top:1vw;padding:0.5vw 1vw;border:none;border-radius:8px;background:#c624d4;color:white;font-family:'Roboto Mono',monospace;cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+  function closeCapstoneScreenshotsModal() {
+    document.getElementById('capstone-screenshots-modal').style.display = 'none';
+  }
+</script>
+
 <!-- Angry Avians Card -->
 <div id="ar-game-card" style="max-width:400px;margin:2vw auto;padding:2vw;background:white;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.15);text-align:center;">
   <h2 style="color:#c624d4;">Angry Avians - Mobile AR Game</h2>
@@ -124,7 +151,6 @@ h2 a {
         modal.style.display = 'none';
       }
   </script>
-<!-- Roofing Card -->
 <div id="roofing-card" style="max-width:400px;margin:2vw auto;padding:2vw;background:white;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.15);text-align:center;">
   <h2 style="color:#c624d4;"><a href="https://sacredskyroofingok.com/" style="color:#c624d4;text-decoration:none;">sacredskyroofingok.com</a></h2>
     <p style="font-size:1vw;">A website I designed and developed for a local roofing company.</p>
@@ -137,6 +163,9 @@ h2 a {
       }
     </style>
 </div>
+</div>
+
+
 </body>
 </html>
 
